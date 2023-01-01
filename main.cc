@@ -91,12 +91,12 @@ class Board {
 
     ~Board(void) {}
 
-    void plotGlider(void) {
-        buf.set(5, 11, LIVE);
-        buf.set(6, 12, LIVE);
-        buf.set(7, 10, LIVE);
-        buf.set(7, 11, LIVE);
-        buf.set(7, 12, LIVE);
+    void plotGlider(int h, int w) {
+        buf.set(h, w + 1, LIVE);
+        buf.set(h + 1, w + 2, LIVE);
+        buf.set(h + 2, w, LIVE);
+        buf.set(h + 2, w + 1, LIVE);
+        buf.set(h + 2, w + 2, LIVE);
     }
 
     void run(int nstep) {
@@ -114,6 +114,6 @@ class Board {
 
 int main() {
     Board b = Board(40, 110);
-    b.plotGlider();
+    b.plotGlider(5, 10);
     b.run(1000);
 }
