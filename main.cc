@@ -8,8 +8,8 @@ class Board {
         int height;
 
       public:
-        Buf(int height, int width) : width(width), height(height) {
-            b = (char *)calloc(1, width * height);
+        Buf(int h, int w) : width(w), height(h) {
+            b = (char *)calloc(1, w * h);
             clear();
         }
 
@@ -85,9 +85,7 @@ class Board {
     }
 
   public:
-    Board(int height, int width)
-        : width(width), height(height), buf(Buf(height, width)),
-          nextBuf(height, width) {}
+    Board(int h, int w) : width(w), height(h), buf(Buf(h, w)), nextBuf(h, w) {}
 
     ~Board(void) {}
 
