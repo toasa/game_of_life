@@ -22,8 +22,6 @@ class Board {
         void copy(Buf &srcBuf) { memcpy(b, srcBuf.b, height * width); }
     };
 
-    const int interval_us = 50 * 1000;
-
     enum state {
         LIVE = '@',
         DEAD = '.',
@@ -31,6 +29,7 @@ class Board {
 
     int height;
     int width;
+    int interval_us;
     Buf buf;
     Buf nextBuf;
 
@@ -85,7 +84,13 @@ class Board {
     }
 
   public:
-    Board(int h, int w) : height(h), width(w), buf(Buf(h, w)), nextBuf(h, w) {}
+    Board(int h, int w, int interval_us = 50 * 1000)
+        : height(h),
+          width(w),
+          interval_us(interval_us),
+          buf(Buf(h, w)),
+          nextBuf(h, w)
+    {}
 
     ~Board(void) {}
 
@@ -102,7 +107,6 @@ class Board {
         for (int i = 0; i < nstep; i++) {
             print();
 
-            int interval_us = 50 * 1000;
             usleep(interval_us);
 
             stepOne();
