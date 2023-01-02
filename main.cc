@@ -4,11 +4,11 @@
 class Board {
     class Buf {
         char *b;
-        int width;
         int height;
+        int width;
 
       public:
-        Buf(int h, int w) : width(w), height(h) {
+        Buf(int h, int w) : height(h), width(w) {
             b = (char *)calloc(1, w * h);
             clear();
         }
@@ -29,8 +29,8 @@ class Board {
         DEAD = '.',
     };
 
-    int width;
     int height;
+    int width;
     Buf buf;
     Buf nextBuf;
 
@@ -85,7 +85,7 @@ class Board {
     }
 
   public:
-    Board(int h, int w) : width(w), height(h), buf(Buf(h, w)), nextBuf(h, w) {}
+    Board(int h, int w) : height(h), width(w), buf(Buf(h, w)), nextBuf(h, w) {}
 
     ~Board(void) {}
 
